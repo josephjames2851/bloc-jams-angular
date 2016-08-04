@@ -3,7 +3,6 @@
         var SongPlayer = {};
         
         var currentSong = null;
-<<<<<<< HEAD
         
         /**
         * @desc Buzz object audio file
@@ -16,10 +15,8 @@
         * @desc Stops currently playing song and loads new audio file as currentBuzzObject
         * @param {Object} song
         */
-=======
         var currentBuzzObject = null;
         
->>>>>>> checkpoint-7
         var setSong = function(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
