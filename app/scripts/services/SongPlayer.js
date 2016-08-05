@@ -43,6 +43,16 @@
         };
         
         /**
+        * @function stopSong
+        * @desc Stops the currentBuzzObject and sets the currentSong to null
+        * @param {Object} song
+        */
+        var stopSong = function(song) {
+            currentBuzzObject.stop();
+            SongPlayer.currentSong.playing = null;
+        };
+        
+        /**
         * @desc Song that is currently playing
         * @type {Object}
         */
@@ -86,8 +96,6 @@
             song.playing = false;
         };
         
-        return SongPlayer;
-        
         /**
         * @function previous
         * @desc Selects the index of the current song and then decreases the current index by one
@@ -97,14 +105,38 @@
             currentSongIndex--;
             
             if (currentSongIndex < 0) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong();
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
                 playSong(song);
             }
         };
+        
+        SongPlayer.next = function() {
+            // Declare current song index and increase by one
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+            console.log(currentSongIndex);
+            
+            // If the updated song index is greater than the number of index available, stop playing
+            if (currentSongIndex >= currentAlbum.songs.length) {
+                stopSong();
+//
+//                currentSongIndex = 0;
+//                var song = currentAlbum.songs[currentSongIndex];
+//                setSong(song);
+//                playSong(song);
+                
+            // Otherwise, 
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
+        
+        return SongPlayer;
     };
     
     angular
