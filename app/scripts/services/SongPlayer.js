@@ -86,8 +86,6 @@
             song.playing = false;
         };
         
-        return SongPlayer;
-        
         /**
         * @function previous
         * @desc Selects the index of the current song and then decreases the current index by one
@@ -105,6 +103,8 @@
                 playSong(song);
             }
         };
+        
+        return SongPlayer;
     };
     
     angular
