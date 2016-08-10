@@ -36,6 +36,12 @@
                 });
             });
             
+            currentBuzzObject.bind('volume', function() {
+                $rootScope.$apply(function() {
+                    SongPlayer.volume = currentBuzzObject.setVolume();
+                });
+            });
+            
             SongPlayer.currentSong = song;
         };
         
@@ -69,6 +75,12 @@
         * @type {Number}
         */
         SongPlayer.currentTime = null;
+        
+        /**
+        * @desc Current volume of the currently playing song. Default is 80
+        * @type {Number} Buzz Range 0-100
+        */
+        SongPlayer.volume = 80;
         
         /**
         * @function playSong
@@ -156,6 +168,17 @@
         SongPlayer.setCurrentTime = function(time) {
             if (currentBuzzObject) {
                 currentBuzzObject.setTime(time);
+            }
+        };
+        
+        /**
+        * @function setVolume
+        * @desc Set the volume of the currently playing song
+        * @param {Number}
+        */
+        SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                SongPlayer.volume = currentBuzzObject.setVolume(volume);
             }
         };
         
